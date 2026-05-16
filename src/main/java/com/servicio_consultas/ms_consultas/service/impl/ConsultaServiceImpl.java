@@ -62,4 +62,23 @@ public class ConsultaServiceImpl implements ConsultaService {
 
         return consultaRepository.save(consulta);
     }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Consulta buscarPorId(Long id) {
+        return consultaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Error: La consulta con ID " + id + " no existe."));
+    }
+
+    
+
+    @Override
+    @Transactional
+    public void eliminarConsulta(Long id) {
+        Consulta consulta = consultaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Error: No se puede eliminar. La consulta con ID " + id + " no existe."));
+
+        consultaRepository.delete(consulta);
+    }
 }

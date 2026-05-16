@@ -2,6 +2,7 @@ package com.servicio_consultas.ms_consultas.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +45,28 @@ public class ConsultaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ConsultaResponseDTO> buscarPorId(@PathVariable Long id) {        
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+        Consulta consulta = consultaService.buscarPorId(id);
+    
+        ConsultaResponseDTO response = ConsultaResponseDTO.builder()
+            .id(consulta.getId())
+            .pacienteId(consulta.getPacienteId())
+            .medicoId(consulta.getMedicoId())
+            .citaId(consulta.getCitaId())
+            .fecha(consulta.getFecha())
+            .motivaConsulta(consulta.getMotivoConsulta())
+            .diagnostico(consulta.getDiagnostico())
+            .observaciones(consulta.getObservaciones())
+            .build();
+            
+        return ResponseEntity.ok(response);
+        
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarConsulta(@PathVariable Long id) {
+        consultaService.eliminarConsulta(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

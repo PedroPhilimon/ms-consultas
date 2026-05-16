@@ -7,4 +7,7 @@ public interface ConsultaService {
 
     Consulta registrarConsulta(ConsultaRequestDTO dto);
 
+    Consulta buscarPorId(Long id);
+
+    void eliminarConsulta(Long id);
 }
