@@ -44,10 +44,10 @@ public class Consulta {
     @NotBlank(message = "El motivo de la consulta no puede estar vacío")
     private String motivoConsulta;
 
-    @NotBlank(message = "El motivo de la consulta no puede estar vacío")
+    @NotBlank(message = "El diagnóstico no puede estar vacío")
     private String diagnostico;
 
-    @NotBlank(message = "El motivo de la consulta no puede estar vacío")
+    @NotBlank(message = "El campo de observaciones no estar vacío")
     private String observaciones;
 
 }
